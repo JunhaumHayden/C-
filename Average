@@ -1,9 +1,13 @@
+#include <stdio.h>
+
+int main()
 
 {
+const int size=5;
 
-float vet[3],soma=0,media; int posicao;
+float vet[size],soma=0,media; int posicao;
 
-for (posicao=0;posicao<3;posicao++)
+for (posicao=0;posicao<size;posicao++)
 
 {
 
@@ -13,11 +17,11 @@ soma=soma+vet[posicao];
 
 }
 
-media=soma/3;
+media=soma/size;
 
 printf ("numeros maiores que media %.2f \n",media);
 
-for (posicao=0;posicao<3;posicao++)
+for (posicao=0;posicao<size;posicao++)
 
 {
 
