@@ -100,6 +100,11 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+# Ignore arquivos .env
+.env
+
+*.zip
+
 # Chutzpah Test files
 _Chutzpah*
 
@@ -307,14 +312,6 @@ node_modules/
 *.ncb
 *.aps
 
-# Ignore arquivos .env
-.env
-
-*.zip
-
-
-
-
 # Visual Studio LightSwitch build output
 **/*.HTMLClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
@@ -406,3 +403,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Diretórios
+img/
+# Diretórios
+img/
+vendor/
