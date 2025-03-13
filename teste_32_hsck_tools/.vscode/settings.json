@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "attack_handshake.h": "c",
+        "esp_err.h": "c",
+        "hccapx_serializer.h": "c"
+    }
+}

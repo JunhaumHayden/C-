@@ -33,6 +33,17 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+# Ignorar diretório de build
+[Bb]uild/
+
+# Ignorar arquivos do CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -69,6 +80,30 @@ ScaffoldingReadMe.txt
 
 # StyleCop
 StyleCopReport.xml
+
+# Arquivos de compilação
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.elf
+
+# Logs e temporários
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Arquivos do Git
+*.orig
+
+# Dependências externas
+/vendor/
+.conan/
+.vcpkg-root
 
 # Files built by Visual Studio
 *_i.c
@@ -391,6 +426,17 @@ FodyWeavers.xsd
 !.vscode/extensions.json
 *.code-workspace
 
+# Arquivos do editor/IDE
+.idea/
+cmake-build-debug/
+cmake-build-release/
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+.settings/
+.cproject
+.project
+
 # Local History for Visual Studio Code
 .history/
 
@@ -404,8 +450,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Diretórios
-img/
 # Diretórios
 img/
 vendor/

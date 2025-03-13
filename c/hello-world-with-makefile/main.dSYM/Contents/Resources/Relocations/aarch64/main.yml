@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hayden/workspace/c_codes/c/hello-world-with-makefile/main'
+relocations:     []
+...
