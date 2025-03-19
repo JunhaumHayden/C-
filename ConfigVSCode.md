@@ -121,6 +121,21 @@ Parabéns! Você acabou de fazer seu primeiro programa em C++.
 
 É importante notar que você deve compilar seu programa e executar a.out toda vez que quiser testar seu código . Você digitará esses dois comandos centenas de vezes neste curso. Mantenha-os em suas anotações ou memorize-os (você provavelmente os memorizará em poucos dias de prática).
 
+### Como compilar corretamente no Mac com Clang
+
+Se estiver compilando múltiplos arquivos (`main.cpp` e `solution.cpp`), use este comando:
+```bash
+g++ -std=c++17 -o main main.cpp solution.cpp
+```
+Ou, se quiser ativar mais verificações:
+```bash
+g++ -std=c++17 -Wall -Wextra -o main main.cpp solution.cpp
+```
+Depois, execute o programa:
+```bash
+./main
+```
+
 Se você configurar o depurador (a seção abaixo), você pode compilar e executar com um único clique do mouse. Falaremos mais sobre o comando de compilação e o que você pode fazer com ele, então é melhor estar familiarizado com ambos.
 
 > Nota : Eu recomendo fortemente que você configure o depurador agora e o use a seu favor durante todo o curso. Ele é incrivelmente útil quando você pega o jeito.
