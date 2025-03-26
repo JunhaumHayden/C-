@@ -62,6 +62,22 @@ int main() {
 
 // Por que usar size_t?
 // Usar size_t é uma prática recomendada porque ele é garantido para ser grande o suficiente para conter o tamanho de qualquer objeto em bytes, o que evita problemas de overflow que poderiam ocorrer se um tipo com sinal fosse usado.
+    printf("Heap Allocation Example\n");
+    struct Person *heapPerson = (struct Person*) malloc(sizeof(struct Person));
+    strcpy(heapPerson->name, "John"); 
+    heapPerson->age = 43;  
+    heapPerson->height = 172;
+
+    printf("Address in heapPerson: %p\n", heapPerson);
+    // char *person2 = ((char*)heapPerson) + 6;
+    // printf("from person2: %s\n", person2);
+
+    for (size_t i = 0; i < sizeof(*heapPerson); i++) {
+        printf("Address: %p, Value: %02x\n", (unsigned char*)heapPerson + i, *((unsigned char*)heapPerson + i));
+    }
+
+    free(heapPerson); // libera a memória alocada na heap
+
     return 0;
     
 };

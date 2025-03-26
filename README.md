@@ -1,10 +1,10 @@
 
 # C Codes
-Codes in C C++ and C#
+Codes in C, C++ and maybe C#
 
 
 
-<h1 align="center"> My first steps in C </h1>
+<h1 align="center"> # 🚀 C & C++ Playground - Where Segfaults Become Friends! 🤖💥  </h1>
 
 
 
@@ -12,47 +12,74 @@ Codes in C C++ and C#
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
-# Description
 
-English
+## 🧐 O que é isso?  
 
-Description:
-Welcome to my learning repository! I am a student at the Federal University of Santa Catarina. This is my space to share my learning journey and growth. Here, you will find the code I am developing as I explore the exciting world of development.
+Seja bem-vindo ao meu repositório de aprendizado! Aqui você encontrará exemplos, experimentos e um pouco de caos controlado enquanto navego pelo universo das linguagens **C e C++**.  
 
-Contents:
-- **C-C++ Page:** A page where I put into practice some of the knowledge gained during my journey, applying recently learned concepts of C and C++ and other related technologies.
+Se você já:  
+✅ Declarou uma variável e esqueceu de inicializá-la,  
+✅ Passou horas caçando um `segmentation fault`,  
+✅ Descobriu que `malloc()` e `free()` são como um relacionamento tóxico se você não prestar atenção...  
 
+Então este repositório é para você! 🚀  
 
-- **C# Page:** Repository for the code developed in the C# and other related technologies.
+---
 
-- **Reflections and Learnings:** From time to time, I will share reflective posts about the challenges I've faced, the solutions I've found, and the lessons I've learned along the way.
-
-- **Collaboration and Feedback:** Whether you are also just starting out or are a more experienced developer, I would love to receive constructive feedback and tips to improve my skills and projects.
-
-This repository is a space to document my evolution as a C developer. I hope that by sharing my challenges and achievements, I can inspire other beginners and create a learning community. Join me on this exciting journey of growth and discovery in the world of frontend development!
+## 📚 Conteúdo  
 
 
+/c-codes
+├── 📝 **C** - Meu laboratório de experimentos com C. Aqui você verá desde humildes ponteiros
+│                   até códigos que desafiam as leis da computação e da paciência humana. 
+│                   Se encontrar um `segmentation fault`, não se preocupe, ele faz parte do pacote.
+│ 
+├── 🚀 **C++** - A evolução natural do caos. Mesmo conceito, agora com mais templates, 
+│                    herança e uma dose extra de confusão. Aqui eu pratico C++, tentando não 
+│                    acidentalmente criar um programa que consuma 100% da CPU sem motivo aparente.
+│ 
+├── 💾 **C#** (Quem sabe um dia?) - O primo distante e gerenciado da família C.  
+│                   Talvez um dia ele apareça por aqui... Se eu me render ao Garbage Collector. 🤖  
+│ 
+├── 🧠 **notas_mentais** - Reflexões sobre minhas aventuras no mundo da programação:  
+│      📌 Como compilar um código sem warnings (dica: nunca acontece na primeira tentativa).  
+│      🛠️ Ferramentas que me salvaram de uma crise existencial.  
+│      🔥 Como um simples `*ptr++` pode arruinar o seu dia e te obrigar a questionar suas escolhas de vida.  
 
-Português-Br
+ 
 
-Descrição: 
-Bem-vindo ao meu repositório de aprendizado! Sou estudante da Universidade Federal de Santa Catarina. 
-Este é o meu espaço para compartilhar minha jornada de aprendizado e crescimento. Aqui, você encontrará o código que estou desenvolvendo enquanto exploro o mundo emocionante do desenvolvimento.
+💬 **Colaboração e Feedback** - Se você gosta de corrigir erros alheios (ou apenas quer compartilhar sua dor), fique à vontade para contribuir! Feedback é sempre bem-vindo!  
 
-Conteúdo:
-- **C-C++ Page:** Página onde ponho em prática alguns dos conhecimentos adquiridos durante a minha jornada, onde estou aplicando conceitos recém-aprendidos em C e C++ e outras tecnologias relacionadas.
+---
 
+## 🎯 Objetivo  
 
-- **C# Page:** Repositório para os códigos desenvolvidos em C# e outras tecnologias relacionadas.
+Este repositório é o meu laboratório de experimentos com C e C++. **Não espere projetos superpolidos**, mas sim um diário de código, com todos os acertos e tropeços registrados. Espero que, ao compartilhar minha jornada, eu possa ajudar outros aventureiros a desbravar o mundo de `printf`, `scanf` e referências mágicas que ninguém entende na primeira tentativa.  
 
-- **Reflexões e Aprendizados:** De vez em quando, vou compartilhar postagens reflexivas sobre os obstáculos que enfrentei, as soluções que encontrei e as lições que aprendi ao longo do caminho.
+---
 
-- **Colaboração e Feedback:** Se você também está começando ou é um desenvolvedor mais experiente, adoraria receber feedback construtivo e dicas para melhorar minhas habilidades e projetos.
+## 🚀 Como rodar os códigos?  
 
+1️⃣ Clone este repositório:  
+```bash
+git clone https://github.com/junhaumhayden/c-codes.git
+cd c-codes
+```
+2️⃣ Compile e execute no terminal:
+``` bash
+gcc arquivo.c -o meu_programa && ./meu_programa  # Para C  
+g++ arquivo.cpp -o meu_programa && ./meu_programa  # Para C++  
+```
 
-Este repositório é um espaço para registrar minha evolução como desenvolvedor frontend. Espero que, ao compartilhar meus desafios e conquistas, eu possa inspirar outros iniciantes e criar uma comunidade de aprendizado. Junte-se a mim nesta jornada emocionante de crescimento e descoberta no mundo do desenvolvimento!
+## 🛡️ Aviso Importante
 
+> ⚠️ Nenhuma variável global foi ferida durante a criação deste repositório. Mas não posso garantir o mesmo para a paciência do programador.
 
+👨‍💻 "C é poderosa. C++ é flexível. Mas ambos podem fazer você questionar suas escolhas de vida."
+
+📬 Quer trocar uma ideia? Me encontre na minha página de contato.
+
+### 🦾 Happy Coding! 🦾
 
 # Author
 
