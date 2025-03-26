@@ -1,4 +1,11 @@
-//ponteiros
+/*
+Pointer
+Com o objetivo de evitar o estouro da pilha de execução, podemos alocar memória no heap, que é uma região de memória que é compartilhada por todos os processos em execução e inicia nos endereços mais baixos e vão incrementando em direção ao meio (encontro com a Stack). A memória alocada no heap é liberada manualmente pelo programador, ao contrário da memória alocada na pilha de execução, que é liberada automaticamente quando a função que alocou a memória retorna.
+
+As linguagens de programaçao alocam os blocos de dados de objetos instanciados na heap, pois a quantidade de memória necessária para armazenar esses objetos é desconhecida até o momento da execução, e na Stack são alocados apenas os ponteiros para esses objetos (tamanho fixo de 4 bytes independente de quanto espaço o objeto irá precisar).
+
+
+*/
 #include <stdio.h>
 #include <stdlib.h> //biblioteca que da acesso a funcao malloc
 // fornece uma variedade de funções utilitárias para realizar operações de alocação de memória, controle de processos, conversões e outras tarefas gerais. Aqui estão algumas das funções mais comuns fornecidas por stdlib.h:
@@ -20,7 +27,7 @@ int main() {
     printf("from main: %p\n", &hello);
     
     char *hello2 = (char *)malloc(sizeof(hello)); 
-    // *hello2 é um ponteiro para char que foi alocado no heap. Aponta para o endereço de memoria do primeiro byte do bloco de memoria alocado no heap onde vai estar a string. Ou seja, vai armazenar  o endereço que é um numero de 4 bytes (64-bits). menor que o tamanho do vetor hello que foi alocado na stack.
+    // *hello2 é um ponteiro para char que foi alocado no heap. Aponta para o endereço de memoria do primeiro byte do bloco de memoria alocado no heap (pela funçao malloc())onde vai estar a string. Ou seja, vai armazenar  o endereço que é um numero de 4 bytes (64-bits). menor que o tamanho do vetor hello que foi alocado na stack.
     // a funcao malloc retorna um ponteiro para o primeiro byte do bloco de memoria alocado. Recebe como argumento o tamanho em bytes para reservar no heap. Neste caso do mesmo tamanho do vetor hello que foi alocado na stack.
     // o ponteiro é do tipo void, por isso é necessário fazer o cast para o tipo desejado.
     // a funcao sizeof() retorna o tamanho em bytes do tipo de dado passado como argumento. No caso o tamanho do vetor hello que foi alocado da stack (12 bytes que poderia ser passado direto no argumento).
