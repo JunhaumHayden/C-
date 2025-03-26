@@ -28,27 +28,25 @@ Então este repositório é para você! 🚀
 
 ## 📚 Conteúdo  
 
-
-/c-codes
-├── 📝 **C** - Meu laboratório de experimentos com C. Aqui você verá desde humildes ponteiros
-│                   até códigos que desafiam as leis da computação e da paciência humana. 
-│                   Se encontrar um `segmentation fault`, não se preocupe, ele faz parte do pacote.
-│ 
-├── 🚀 **C++** - A evolução natural do caos. Mesmo conceito, agora com mais templates, 
-│                    herança e uma dose extra de confusão. Aqui eu pratico C++, tentando não 
-│                    acidentalmente criar um programa que consuma 100% da CPU sem motivo aparente.
-│ 
-├── 💾 **C#** (Quem sabe um dia?) - O primo distante e gerenciado da família C.  
-│                   Talvez um dia ele apareça por aqui... Se eu me render ao Garbage Collector. 🤖  
-│ 
-├── 🧠 **notas_mentais** - Reflexões sobre minhas aventuras no mundo da programação:  
-│      📌 Como compilar um código sem warnings (dica: nunca acontece na primeira tentativa).  
-│      🛠️ Ferramentas que me salvaram de uma crise existencial.  
-│      🔥 Como um simples `*ptr++` pode arruinar o seu dia e te obrigar a questionar suas escolhas de vida.  
+📝 **C** -   Meu laboratório de experimentos com C. Aqui você verá desde humildes ponteiros
+             até códigos que desafiam as leis da computação e da paciência humana. 
+             Se encontrar um `segmentation fault`, não se preocupe, ele faz parte do pacote.
+ 
+🚀 **C++** - A evolução natural do caos. Mesmo conceito, agora com mais templates, 
+             herança e uma dose extra de confusão. Aqui eu pratico C++, tentando não 
+             acidentalmente criar um programa que consuma 100% da CPU sem motivo aparente.
+ 
+💾 **C#** -  (Quem sabe um dia?) - O primo distante e gerenciado da família C.  
+              Talvez um dia ele apareça por aqui... Se eu me render ao Garbage Collector. 🤖  
+ 
+🧠 **notas_mentais** - Reflexões sobre minhas aventuras no mundo da programação:  
+                📌 Como compilar um código sem warnings (dica: nunca acontece na primeira tentativa).  
+                🛠️ Ferramentas que me salvaram de uma crise existencial.  
+                🔥 Como um simples `*ptr++` pode arruinar o seu dia e te obrigar a questionar suas escolhas de vida.  
 
  
 
-💬 **Colaboração e Feedback** - Se você gosta de corrigir erros alheios (ou apenas quer compartilhar sua dor), fique à vontade para contribuir! Feedback é sempre bem-vindo!  
+> 💬 **Colaboração e Feedback** - Se você gosta de corrigir erros alheios (ou apenas quer compartilhar sua dor), fique à vontade para contribuir! Feedback é sempre bem-vindo!  
 
 ---
 
