@@ -9,13 +9,50 @@ exemplos:
 
 | Código | Significado       |
 |--------|-------------------|
-| %d     | Inteiro          |
-| %f     | Float            |
-| %c     | Caractere        |
-| %s     | String           |
-| %p     | pointer addresses   |
-| %x     | unsigned int     |
+| %d     | Inteiro (**D**ecimal) |
+| %f     | **F**loat            |
+| %c     | **C**aractere        |
+| %s     | **S**tring           |
+| %p     | **P**ointer addresses   |
+| %x     | he**X**adecimal      |
 | %%     | Coloca um % na tela |
+
+> O especificador de tipo %x em C é usado em funções como printf() e scanf() para representar números inteiros no formato hexadecimal (base 16).
+
+> 📌 Uso no printf()
+> `%x` → Exibe o número em hexadecimal com letras minúsculas (a a f).
+> 
+> `%X` → Exibe o número em hexadecimal com letras maiúsculas (A a F).
+>
+> `%02x`→ Exibe o número em formato hexadecimal, com dois dígitos (completando com 0 à esquerda, se necessário).
+> 
+> 📌 Dica: Se quiser exibir um número hexadecimal com o prefixo 0x, use # antes do x no printf():
+>```c
+>printf("Hexadecimal com prefixo: %#x\n", num);
+>```
+>Saída:
+>```c
+>Hexadecimal com prefixo: 0xff
+>```
+>```c
+>#include <stdio.h>
+>
+>int main() {
+>    int num = 255;
+>
+>    printf("Decimal: %d\n", num);    // Saída: Decimal: 255
+>    printf("Hexadecimal: %x\n", num); // Saída: Hexadecimal: ff
+>    printf("Hexadecimal (maiúsculas): %X\n", num); // Saída: Hexadecimal (maiúsculas): FF
+>    printf("Hexadecimal (dois digitos): %02x\n", num); // Saída: Hexadecimal (maiúsculas): FF
+>    printf("Hexadecimal (prefixo 0x): %#x\n", num); // Saída: Hexadecimal (maiúsculas): FF
+>
+>    return 0;
+>}
+>```
+> ver [arquivo](../firstSteps/formatSpecifiesType.c)
+
+
+
 
 # Struct
 > ver arquivo /struct/hellostruct.c

@@ -86,3 +86,5 @@ int main() {
     return 0;
     
 };
+
+// É possivel verificar a alocaçao de memoria diretamente no binario gerado pelo gcc com o comando: objdump -h meu_programa

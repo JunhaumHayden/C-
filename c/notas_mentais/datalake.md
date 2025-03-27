@@ -1,5 +1,16 @@
 # Datalake Test
 
+## Executar
+1. Compilar com a flag de debbuging (igual para C++):
+```bash
+gcc meu_programa.c -g -o meu_programa
+```
+2. Execute o programa com leaks e permissão de administrador:
+```bash
+sudo leaks -atExit -- ./meu_programa
+```
+## Explicaçao sobre ferramentas para macOS M1
+
 No MacBook M1 com Homebrew instalado, pode-se testar vazamentos de memória em programas C utilizando ferramentas como:
 
 ## 1️⃣ Valgrind (com Homebrew) 
@@ -41,6 +52,11 @@ Compilar com as flags `-fsanitize=address e -g` para debug:
 ```bash
 clang -fsanitize=address -g -o meu_programa meu_programa.c
 ```
+> Para c++
+>```bash
+>g++ -fsanitize=address -g -o meu_programa meu_programa.cpp && ./meu_programa
+>
+>```
 Executar normalmente:
 ```bash
 ./meu_programa
@@ -62,6 +78,11 @@ Execute o programa com leaks e permissão de administrador:
 ```bash
 sudo leaks -atExit -- ./meu_programa
 ```
+> Para c++
+> ```bash
+> MALLOC_STACK_LOGGING=1 ./test
+> leaks -atExit -- ./test
+> ```
 Se houver vazamentos, o comando imprimirá os blocos de memória alocados e não liberados.
 
 ### Conclusão
@@ -174,7 +195,7 @@ STACK OF 1 INSTANCE OF 'ROOT LEAK: <malloc in main>':
 ```
 ➡️ Foi alocado um bloco de 32 bytes que não foi liberado corretamente.
 
-### 1. Linhas mais importantes para analisar
+# 1. Linhas mais importantes para analisar
 
 - 1️⃣ Número de vazamentos e tamanho total
 ```bash
