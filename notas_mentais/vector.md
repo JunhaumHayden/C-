@@ -1,4 +1,6 @@
 # O método .size()
+
+Ver [arquivo](../c++/leetcode/1672/solution.cpp)
 O método `.size()` pertence à classe `std::vector` da STL (Standard Template Library) do C++ e retorna o número de elementos armazenados no vetor.
 
 No caso de `accounts.size()`, ele retorna quantos arrays internos (clientes) existem no vetor accounts.

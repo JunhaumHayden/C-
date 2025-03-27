@@ -40,9 +40,9 @@ Então este repositório é para você! 🚀
               Talvez um dia ele apareça por aqui... Se eu me render ao Garbage Collector. 🤖  
  
 🧠 **notas_mentais** - Reflexões sobre minhas aventuras no mundo da programação:  
-                📌 Como compilar um código sem warnings (dica: nunca acontece na primeira tentativa).  
-                🛠️ Ferramentas que me salvaram de uma crise existencial.  
-                🔥 Como um simples `*ptr++` pode arruinar o seu dia e te obrigar a questionar suas escolhas de vida.  
+                - 📌 Como compilar um código sem warnings (dica: nunca acontece na primeira tentativa).  
+                - 🛠️ Ferramentas que me salvaram de uma crise existencial.  
+                - 🔥 Como um simples `*ptr++` pode arruinar o seu dia e te obrigar a questionar suas escolhas de vida.  
 
  
 

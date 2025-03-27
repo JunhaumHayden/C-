@@ -65,8 +65,13 @@ int main() {
     printf("Heap Allocation Example\n");
     struct Person *heapPerson = (struct Person*) malloc(sizeof(struct Person));
     strcpy(heapPerson->name, "John"); 
-    heapPerson->age = 43;  
-    heapPerson->height = 172;
+    // heapPerson->age = 43;  
+    // heapPerson->height = 172;
+
+    (*heapPerson).age = 43; // outra forma de acessar o membro da struct
+    // (*heapPerson).age é equivalente a heapPerson->age. Ambas as formas são válidas e fazem a mesma coisa.
+    // A diferença é que heapPerson->age é uma forma mais comum e mais fácil de ler, enquanto (*heapPerson).age é mais explícita e mostra que estamos acessando o membro age da estrutura apontada por heapPerson.  
+    (*heapPerson).height = 172;
 
     printf("Address in heapPerson: %p\n", heapPerson);
     // char *person2 = ((char*)heapPerson) + 6;
