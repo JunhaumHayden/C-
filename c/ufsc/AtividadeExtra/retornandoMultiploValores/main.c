@@ -1,3 +1,9 @@
+/*
+Teste de vazamento de mamoria
+gcc main.c -g -o main 
+sudo leaks -atExit -- ./main 
+*/
+
 #include <stdio.h> // biblioteca para usar a função printf()
 #include <stdlib.h> // biblioteca para usar a função rand()
 

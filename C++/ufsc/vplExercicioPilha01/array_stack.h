@@ -72,8 +72,9 @@ void structures::ArrayStack<T>::push(const T& data) {
         throw std::out_of_range("pilha cheia");
     } else {
         // COLOQUE SEU CODIGO AQUI...
-        contents[top_] = data;
         top_++;
+        contents[top_] = data;
+        
     }
 }
 
@@ -102,7 +103,7 @@ void structures::ArrayStack<T>::clear() {
 template<typename T>
 std::size_t structures::ArrayStack<T>::size() {
     // COLOQUE SEU CODIGO AQUI...
-    return top_ + 1;
+    return static_cast<std::size_t>(top_+1);
 }
 
 template<typename T>
@@ -119,7 +120,7 @@ bool structures::ArrayStack<T>::empty() {
 template<typename T>
 bool structures::ArrayStack<T>::full() {
     // COLOQUE SEU CODIGO AQUI...
-    return static_cast<std::size_t>(top_+1); == max_size_;
+    return static_cast<std::size_t>(top_ + 1) == max_size_;
     
 }
 
