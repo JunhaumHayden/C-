@@ -5,8 +5,10 @@
 
 int main(int argc, char **argv) {
     /* Cria um processo filho. */
+    printf("Retorno do fork()\nProcesso: %d: pid = %d\n", getpid(), getpid());
     pid_t pid = fork();
-    printf("Retorno do fork()\nProcesso: %d: pid = %d\n", getpid(), pid);
+    int contador = 0;
+    // printf("Retorno do fork()\nProcesso: %d: pid = %d\n", getpid(), pid);
     // trat excecao
     if (pid == -1) {
         perror("Erro ao criar processo");
@@ -14,12 +16,16 @@ int main(int argc, char **argv) {
     }
     
     if (pid > 0) {  // Apenas o processo pai executa os prints
+        contador++;
+        printf("Contador do Pai: %d\n", contador);
         printf("Apenas o proceeso pai imprime\n");
         printf("Processo Pai: Meu PID é %d e meu filho tem PID %d\n", getpid(), pid);
         printf("\tProcesso %d executando!\n", getpid());
         fflush(stdout); //força a saída do buffer da stdout (saída padrão) para o terminal imediatamente.
     }
     else if (pid == 0) {  // Apenas o processo filho executa os prints
+        contador++;
+        printf("Contador do Filho: %d\n", contador);
         printf("Apenas o proceeso filho imprime\n");
         printf("Processo Filho: Meu PID é %d e meu Pai tem PID %d\n", getpid(), getppid());
         printf("\tProcesso %d executando!\n", getpid());
@@ -29,7 +35,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
     /* Cria um processo filho. */
-    //fork();
+    fork();
     printf("\nCada processo imprime essa linha após a chamada fork()\n");
     printf("\tProcesso %d executando!\n\n", getpid());
     fflush(stdout);
