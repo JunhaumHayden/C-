@@ -1,0 +1,47 @@
+\documentclass[12pt,oneside]{abntex2}
+
+% Pacotes básicos
+\usepackage[utf8]{inputenc}    % Para acentuação
+\usepackage[T1]{fontenc}       % Codificação da fonte
+\usepackage[brazil]{babel}     % Idioma
+\usepackage{graphicx}          % Para inserir imagens
+\usepackage{amsmath, amssymb}  % Símbolos matemáticos
+\usepackage{hyperref}          % Links clicáveis
+\usepackage{lipsum}            % Gera texto de exemplo
+
+% Informações do TCC
+\titulo{Título do Trabalho}
+\autor{Seu Nome Completo}
+\instituicao{Universidade XYZ\\Curso de Ciência da Computação}
+\local{Cidade - Estado}
+\data{Abril de 2025}
+\orientador{Prof. Orientador Nome}
+\tipotrabalho{Trabalho de Conclusão de Curso (TCC)}
+\preambulo{Trabalho apresentado ao Curso de Ciência da Computação da Universidade XYZ como requisito parcial para obtenção do título de Bacharel.}
+
+% Início do documento
+\begin{document}
+
+\imprimircapa
+\imprimirfolhaderosto
+
+\sumario
+
+\chapter{Introdução}
+\lipsum[1-2]
+
+\chapter{Referencial Teórico}
+\lipsum[3-4]
+
+\chapter{Metodologia}
+\lipsum[5]
+
+\chapter{Resultados}
+\lipsum[6]
+
+\chapter{Conclusão}
+\lipsum[7]
+
+\bibliography{referencias}
+
+\end{document}

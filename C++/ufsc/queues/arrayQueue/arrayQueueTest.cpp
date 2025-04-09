@@ -1,3 +1,10 @@
+/*
+g++ -std=c++17 -o test arrayQueueTest.cpp \
+    -I/opt/homebrew/Cellar/googletest/1.16.0/include \
+    -L/opt/homebrew/Cellar/googletest/1.16.0/lib \
+    -lgtest -lgtest_main -pthread && ./test
+*/
+
 #include "genArrayQueue.h"
 #include <gtest/gtest.h>
 

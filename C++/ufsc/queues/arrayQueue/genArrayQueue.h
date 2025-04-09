@@ -2,6 +2,7 @@
 #ifndef ARRAY_QUEUE
 #define ARRAY_QUEUE
 
+#include <stdexcept> // Para tratamento de exceções
 template<class T, int size=100> // Declering the class template
 
 class ArrayQueue {              // Declerinf the class
@@ -9,13 +10,14 @@ class ArrayQueue {              // Declerinf the class
         ArrayQueue() {          // Constructor
             first = last = -1;
         }
-        ~ArrayQueue(); // Destructor
+        ~ArrayQueue() {}; // Destructor
+        
     // Methods Declaration
     void enqueue(T); // Add one element to the queue
 
     T dequeue();     // Remove one element from the queue
 
-    bool is Full() { // Verifica se a fila está cheia
+    bool isFull() { // Verifica se a fila está cheia
     return first == 0 && last == size-1 || first == ((last+1)%size); // Condicoes de fila cheia
     }
     bool isEmpty() { // Verifica se a fila está vazia
