@@ -6,11 +6,15 @@
 template<class T, int size=100> // Declering the class template
 
 class ArrayQueue {              // Declerinf the class
+    // Declaracao dos atributos
+    private:
+        int first, last; // Variaveis para controle da fila
+        T storage[size]; // Armazena os elementos da fila
     public:
         ArrayQueue() {          // Constructor
             first = last = -1;
         }
-        ~ArrayQueue() {}; // Destructor
+        ~ArrayQueue() {}; // Destructor - Não há alocação dinâmica, então é vazio
         
     // Methods Declaration
     void enqueue(T); // Add one element to the queue
@@ -23,19 +27,16 @@ class ArrayQueue {              // Declerinf the class
     bool isEmpty() { // Verifica se a fila está vazia
         return first == -1; // Condicao de fila vazia
     }
-    void clear() { // Limpa a fila
-        first = last = -1;
-    }
+    void clear();  // Limpa a fila
+
+    
     void setFirst(int f) { // Define o primeiro elemento
         first = f%size; // Garante que o primeiro elemento esteja dentro do tamanho da fila
     }
     void setLast(int l) { // Define o último elemento
         last = l%size; // Garante que o último elemento esteja dentro do tamanho da fila
     }
-    // Declaracao dos atributos
-    private:
-        int first, last; // Variaveis para controle da fila
-        T storage[size]; // Armazena os elementos da fila
+    
 };
 
 // Definindo o metodo enqueue
@@ -64,4 +65,9 @@ T ArrayQueue<T, size>::dequeue() { // Remove e devolve um elemento da fila
     }
     return tempElement; // Retorna o elemento removido
 }
+
+template<class T, int size>
+void ArrayQueue<T, size>::clear() { // Limpa a fila
+    first = last = -1; // Define o primeiro e o último elemento como -1
+} // Fim do metodo clear
 #endif

@@ -2,6 +2,8 @@ em C++ você usa template <typename T> sempre que precisar criar código genéri
 
 No entanto, há algumas variações e boas práticas ao trabalhar com templates. Vou te mostrar quando e como usá-los corretamente.
 
+> Templates (template<class T>) precisam da implementação no .h porque o compilador precisa gerar código para cada tipo usado.
+
 1️⃣ Templates Básicos: Tipo Genérico T
 
 Se você quer que apenas um tipo de dado seja genérico (por exemplo, uma classe ou função que funcione para int, double, std::string, etc.), use:
@@ -88,3 +90,12 @@ Múltiplos tipos genéricos	template <typename T1, typename T2>
 Tamanho fixo como parâmetro	template <typename T, int N>
 Funções genéricas	template <typename T> T soma(T a, T b);
 📌 Use template sempre que quiser reusar código para diferentes tipos sem duplicação. Isso torna seu código mais flexível e modular.
+
+
+# Por que separar a declaração (.h) da implementação (.cpp) 
+Resumo: Melhor Prática
+
+|Situação	       | Onde Implementar?         |
+|Classe normal	.h (declaração) + .cpp (implementação)      |
+|Templates	       | Tudo no .h (ou .hpp)      |
+|Funções simples   | Pode ser no .h com inline |
