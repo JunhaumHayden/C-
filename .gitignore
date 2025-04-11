@@ -34,15 +34,9 @@ bld/
 [Ll]ogs/
 # Ignorar diretório de build
 [Bb]uild/
-
-# Ignorar arquivos do CMake
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
-Makefile
-
-
-
+/bin/
+/debug/
+/release/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -89,6 +83,9 @@ StyleCopReport.xml
 *.exe
 *.out
 *.elf
+*.obj
+*.lib
+*.app
 
 # Logs e temporários
 *.log
@@ -133,6 +130,26 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+
+# Arquivos do Code::Blocks
+*.depend
+*.layout
+*.cbp
+*.layout.save
+
+# Arquivos de CMake
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# Arquivos de configuração do sistema/macOS
+.DS_Store
+
+# Outros
+*.bak
+*.old
 
 # Ignore arquivos .env
 .env
@@ -425,8 +442,9 @@ FodyWeavers.xsd
 !.vscode/extensions.json
 *.code-workspace
 
-# Arquivos do editor/IDE
+# Arquivos do editor/IDE CLion/JetBrains
 .idea/
+cmake-build-*/
 cmake-build-debug/
 cmake-build-release/
 *.xcworkspace
