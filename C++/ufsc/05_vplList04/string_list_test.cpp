@@ -1,6 +1,13 @@
 //  "Copyright [2018] <Alexandre Goncalves Silva> (rev. nov2021)"
+/*
+g++ -std=c++17 -o test string_list_test.cpp \
+    -I/opt/homebrew/Cellar/googletest/1.16.0/include \
+    -L/opt/homebrew/Cellar/googletest/1.16.0/lib \
+    -lgtest -lgtest_main -pthread && ./test
+ */
+
 #include "gtest/gtest.h"
-#include "./string_list.h"
+#include "./string_list1.h"
 
 int main(int argc, char* argv[]) {
     std::srand(std::time(NULL));
