@@ -1,6 +1,6 @@
 /*
 Teste de vazamento de mamoria
-gcc main.c -g -o main 
+gcc main.c -g -o main
 sudo leaks -atExit -- ./main 
 */
 
