@@ -1,4 +1,22 @@
 // Usando soluçao 03
+//Problemas Identificados
+//
+//Deadlock na função recursiva: A função compute faz chamadas recursivas enquanto o mutex está travado na thread wrapper (compute_thread). Quando compute tenta travar o mutex novamente para casos base (arg < 2), o programa trava porque o mutex já está travado pela mesma thread.
+//Uso desnecessário de variável global: A variável gValue é compartilhada entre todas as threads, o que força o uso de mutex. Porém, cada thread poderia ter sua própria variável local para armazenar o resultado.
+//Solução Proposta
+//
+//A melhor solução é eliminar completamente a necessidade do mutex, tornando cada thread independente. Podemos fazer isso:
+//
+//Removendo a variável global gValue e usando variáveis locais
+//Modificando a função compute para retornar o valor calculado em vez de modificar uma variável global
+//Eliminando to_do o uso do mutex, já que cada thread trabalhará com seus próprios dados
+//Melhorias Implementadas
+//
+//Eliminação do mutex: Removemos completamente o mutex e sua inicialização/destruição
+//Função compute modificada: Agora retorna o valor calculado em vez de modificar uma variável global
+//Thread wrapper simplificada: Apenas chama compute e armazena o resultado
+//Paralelismo eficiente: Cada thread opera de forma independente, sem necessidade de sincronização
+
 
 #include <pthread.h>
 #include <stdio.h>

@@ -1,3 +1,30 @@
+/*
+Solução com Mutex Recursivo
+Você está absolutamente correto! Usar um mutex recursivo é de fato a solução mais "fácil" para manter a estrutura original do código enquanto resolve o problema de deadlock.
+Análise desta Solução
+
+Vantagens:
+
+Mantém a estrutura original: Não precisamos modificar a lógica da função compute
+Resolve o deadlock: O mutex recursivo permite que a mesma thread trave o mutex múltiplas vezes
+Implementação simples: Requer apenas mudanças na inicialização do mutex
+Desvantagens/Problemas:
+
+Serialização implícita: Embora evite o deadlock, ainda força uma serialização das operações
+Contenção por lock: Todas as threads competem pelo mesmo mutex global
+Problema de design: Continua usando uma variável global compartilhada quando não há necessidade
+Overhead: Mutexes recursivos têm um overhead ligeiramente maior que mutexes normais
+Quando usar esta abordagem?
+
+Esta solução seria adequada quando:
+
+Você precisa manter exatamente a estrutura do código original
+A performance não é crítica
+Você está disposto a aceitar a serialização das operações
+Modificar a função compute não é uma opção
+*/
+
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +36,7 @@ pthread_mutex_t gMtx;
 // Função imprime resultados na correção do exercício -- definida em helper.c
 void imprimir_resultados(int n, int** results);
 
-// Função escrita por um engenheiro
+// Função original mantida, mas agora com mutex recursivo
 void compute(int arg) {
     if (arg < 2) {
         pthread_mutex_lock(&gMtx);
@@ -21,18 +48,22 @@ void compute(int arg) {
     }
 }
 
-// Função wrapper que pode ser usada com pthread_create() para criar uma
-// thread que retorna o resultado de compute(arg
+// Função wrapper com mutex recursivo
 void* compute_thread(void* arg) {
     int* ret = malloc(sizeof(int));
     pthread_mutex_lock(&gMtx);
     gValue = 0;
     compute(*((int*)arg));
+    /*
+    /A expressão: compute(*((int*)arg)) equivale a:
+    int* int_ptr = (int*)arg;  // Conversão explícita
+    int value = *int_ptr;      // Dereferenciação explícita
+    compute(value);            // Chamada da função
+     */
     *ret = gValue;
     pthread_mutex_unlock(&gMtx);
     return ret;
 }
-
 
 int main(int argc, char** argv) {
     // Temos n_threads?
@@ -47,8 +78,12 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    //Inicializa o mutex
-    pthread_mutex_init(&gMtx, NULL);
+    // Inicializa o mutex como RECURSIVO
+    pthread_mutexattr_t attrs;
+    pthread_mutexattr_init(&attrs);
+    pthread_mutexattr_settype(&attrs, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutex_init(&gMtx, &attrs);
+    pthread_mutexattr_destroy(&attrs);
 
     int args[n_threads];
     int* results[n_threads];
@@ -66,7 +101,6 @@ int main(int argc, char** argv) {
     pthread_mutex_destroy(&gMtx);
 
     // Imprime resultados na tela
-    // Importante: deve ser chamada para que a correção funcione
     imprimir_resultados(n_threads, results);
 
     // Faz o free para os resultados criados nas threads

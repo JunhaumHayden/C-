@@ -62,3 +62,65 @@ Tuple é como um Struct anomino, sem nomes ou etiquetas
 - Tuple: estrutura de dados (conjunto) imutavel com elementos de tipos diferentes.
 - Array: estrutura de dados (conjunto) imutavel com elementos de mesmo tipo.
 - Struct: estrutura de dados 
+
+# atoi() - ASCII to Integer
+> Ex: Explicação da Linha int n_threads = atoi(argv[1]);
+
+Esta linha de código está fazendo duas operações importantes:
+
+### 1. argv[1] - Acessando o argumento da linha de comando
+
+`argv` é o array de strings que contém os argumentos passados ao programa na linha de comando
+- `argv[0]` é sempre o nome do próprio programa
+- `argv[1]` é o primeiro argumento após o nome do programa
+> Ex: No comando ./program 2 16 17, os valores seriam:
+> `argv[0]` = "./program"
+> `argv[1]` = "2" (número de threads)
+> `argv[2]` = "16" (primeiro valor para compute)
+> `argv[3]` = "17" (segundo valor para compute)
+### 2. atoi() - Convertendo string para inteiro
+
+> atoi significa "ASCII to integer"
+
+É uma função da biblioteca padrão C (stdlib.h) que converte uma string em um valor inteiro
+Recebe como parâmetro uma string (no caso, argv[1] que é "2")
+Retorna o valor inteiro correspondente (no exemplo, retornaria 2)
+#### Comportamento importante do atoi():
+
+Se a string não representar um número válido, `retorna 0`
+
+Isso é usado na verificação seguinte: if (!n_threads || ...)
+> Exemplos:
+> 
+> atoi("123") → 123
+>
+> atoi("-45") → -45
+>
+> atoi("0") → 0
+>
+> atoi("abc") → 0
+> 
+> atoi("12a34") → 12 (converte até encontrar caractere não numérico)
+
+Por que é necessário nesta aplicação?
+
+O programa precisa saber quantas threads criar, e esse número é passado 
+como primeiro argumento na linha de comando. 
+Como todos os argumentos de linha de comando chegam como strings (char*),
+precisamos converter para um número inteiro que possa ser usado no 
+restante do programa.
+
+### Alternativas modernas:
+
+Em C moderno, poderia-se usar `strtol()` que tem melhor tratamento de 
+erros:
+
+```c
+char* endptr;
+int n_threads = strtol(argv[1], &endptr, 10);
+if (endptr == argv[1] || *endptr != '\0') {
+// Tratamento de erro - conversão falhou
+}
+```
+Mas `atoi()` é suficiente para este contexto onde já há verificação 
+posterior do valor (if (!n_threads...)).

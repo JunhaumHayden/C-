@@ -36,3 +36,21 @@ unlock para cada lock feito.
    - Por fim, destrua `attrs` usando `pthread_mutexattr_destroy()`.
 3. A função `compute()` pode ser reescrita de modo que nenhum mutex seja necessário no programa. 
 Essa solução aproveita melhor o paralelismo!
+
+## Comparação com as outras soluções:
+
+Solução com mutex normal modificado (01)
+- ✅ Mantém estrutura original
+- ❌ Ainda tem problemas de serialização
+- ❌ Resultados podem ser imprevisíveis
+
+Solução com mutex recursivo (02)
+- ✅ Mantém estrutura original intacta
+- ✅ Fácil de implementar
+- ❌ Performance inferior à solução ideal
+- ❌ Ainda usa variável global desnecessariamente
+
+Solução ideal (03): Elimina o mutex completamente, usando variáveis locais
+- ✅ Melhor desempenho
+- ✅ Design mais limpo
+- ❌ Requer reescrever a função compute
