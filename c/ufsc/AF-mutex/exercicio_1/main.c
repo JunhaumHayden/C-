@@ -10,6 +10,11 @@
 //    |          |                 |
 // worker_1   worker_2   ....   worker_n
 
+// ~~~ estrutura do programa ~~~
+// main thread (pai) cria n_threds (argv[1]) worker threads
+// cada thread deve incrementar contador_global (operador ++) n_loops vezes
+// pai deve esperar pelas worker threads  antes de imprimir!
+
 
 // ~~~ argumentos (argc, argv) ~~~
 // ./program n_threads
@@ -43,7 +48,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    int n_threads = atoi(argv[1]);
+    int n_threads = atoi(argv[1]);  //ASCII to integer
     int n_loops = atoi(argv[2]);
     pthread_t threads[n_threads];
     pthread_mutex_init(&mutex, NULL); // inicializa o mutex - argumento: endereço do mutex, NULL para atributos padrão
