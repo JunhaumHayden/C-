@@ -43,59 +43,59 @@ class DoublyLinkedList {
 
  private:
     class Node {
-     public:
-        //! metodo construtor
-        explicit Node(const T& data):
-            data_{data}
-        {}
-        //! metodo construtor
-        Node(const T& data, Node* next):
-            data_{data},
-            next_{next}
-        {}
-        //! metodo construtor
-        Node(const T& data, Node* prev, Node* next):
-            data_{data},
-            prev_{prev},
-            next_{next}
-        {}
-        //! metodo retornar dado
-        T& data() {  // getter: dado
-            return data_;
-        }
-        //! metodo retornar dado
-        const T& data() const {  // getter const: dado
-            return data_;
-        }
-        //! metodo retornar anterior
-        Node* prev() {  // getter: próximo
-            return prev_;
-        }
-        //! metodo retornar anterior
-        const Node* prev() const {  // getter const: próximo
-            return prev_;
-        }
-        //! metodo informar anterior
-        void prev(Node* node) {  // setter: próximo
-            prev_ = node;
-        }
-        //! metodo retornar proximo
-        Node* next() {  // getter: próximo
-            return next_;
-        }
-        //! metodo retornar proximo
-        const Node* next() const {  // getter const: próximo
-            return next_;
-        }
-        //! metodo informar proximo
-        void next(Node* node) {  // setter: próximo
-            next_ = node;
-        }
+	     public:
+	        //! metodo construtor
+	        explicit Node(const T& data):
+	            data_{data}
+	        {}
+	        //! metodo construtor
+	        Node(const T& data, Node* next):
+	            data_{data},
+	            next_{next}
+	        {}
+	        //! metodo construtor
+	        Node(const T& data, Node* prev, Node* next):
+	            data_{data},
+	            prev_{prev},
+	            next_{next}
+	        {}
+	        //! metodo retornar dado
+	        T& data() {  // getter: dado
+	            return data_;
+	        }
+	        //! metodo retornar dado
+	        const T& data() const {  // getter const: dado
+	            return data_;
+	        }
+	        //! metodo retornar anterior
+	        Node* prev() {  // getter: próximo
+	            return prev_;
+	        }
+	        //! metodo retornar anterior
+	        const Node* prev() const {  // getter const: próximo
+	            return prev_;
+	        }
+	        //! metodo informar anterior
+	        void prev(Node* node) {  // setter: próximo
+	            prev_ = node;
+	        }
+	        //! metodo retornar proximo
+	        Node* next() {  // getter: próximo
+	            return next_;
+	        }
+	        //! metodo retornar proximo
+	        const Node* next() const {  // getter const: próximo
+	            return next_;
+	        }
+	        //! metodo informar proximo
+	        void next(Node* node) {  // setter: próximo
+	            next_ = node;
+	        }
 
-     private:
-        T data_;
-        Node* prev_;
-        Node* next_;
+	     private:
+	        T data_;
+	        Node* prev_;
+	        Node* next_;
     };
 
     //! posicionamento do ponteiro pelo caminho mais curto
