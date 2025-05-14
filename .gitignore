@@ -86,6 +86,7 @@ StyleCopReport.xml
 *.obj
 *.lib
 *.app
+*.out
 
 # Logs e temporários
 *.log
@@ -153,7 +154,7 @@ install_manifest.txt
 
 # Ignore arquivos .env
 .env
-
+*.tar
 *.zip
 
 # Chutzpah Test files
@@ -470,3 +471,5 @@ cmake-build-release/
 # Diretórios
 img/
 vendor/
+Contents/
+Contents/*
