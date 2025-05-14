@@ -1,4 +1,12 @@
 /* Copyright [2023] <Alexandre Gonçalves Silva> */
+
+/*
+*g++ -std=c++17 -o test linked_stack_test.cpp \
+-I/opt/homebrew/Cellar/googletest/1.16.0/include \
+-L/opt/homebrew/Cellar/googletest/1.16.0/lib \
+-lgtest -lgtest_main -pthread && ./test
+*/
+
 #include <stdexcept>
 #include <string>
 #include "gtest/gtest.h"

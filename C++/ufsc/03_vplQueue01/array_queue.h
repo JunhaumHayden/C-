@@ -70,7 +70,7 @@ structures::ArrayQueue<T>::ArrayQueue(std::size_t max) {
 //! destrutor padrao
 template<typename T>
 structures::ArrayQueue<T>::~ArrayQueue() {
-    delete [] contents;
+    delete [] contents; // desaloca o vetor
 }
 
 //! metodo enfileirar
@@ -86,6 +86,7 @@ void structures::ArrayQueue<T>::enqueue(const T& data) {
     contents[end_] = data;
     size_++;
 }
+
 
 //! metodo desenfileirar
 template<typename T>
@@ -140,5 +141,5 @@ bool structures::ArrayQueue<T>::empty() {
 //! metodo verifica se esta cheio
 template<typename T>
 bool structures::ArrayQueue<T>::full() {
-    return begin_ == (end_ + 1) % static_cast<int>(max_size_);
+    return begin_ == (end_ + 1) % static_cast<int>(max_size_); //cast de size_t para int
 }

@@ -215,3 +215,90 @@ TEST_F(LinkedListTest, RemoveElement) {
     ASSERT_EQ(9u, list.size());
     ASSERT_FALSE(list.contains(4));
 }
+
+// TESTES PARA NOVAS FUNÇÕES
+
+TEST_F(LinkedListTest, Clone) {
+    for (int i = 1; i <= 5; ++i) {
+        list.push_back(i);
+    }
+
+    auto cloned = list.clone();
+    ASSERT_EQ(list.size(), cloned.size());
+
+    for (std::size_t i = 0; i < list.size(); ++i) {
+        ASSERT_EQ(list.at(i), cloned.at(i));
+    }
+
+    // Modificar lista original não deve afetar o clone
+    list.pop_back();
+    ASSERT_NE(list.size(), cloned.size());
+}
+
+TEST_F(LinkedListTest, Invert) {
+    for (int i = 1; i <= 5; ++i) {
+        list.push_back(i);  // [1, 2, 3, 4, 5]
+    }
+    list.invert();          // Esperado: [5, 4, 3, 2, 1]
+
+    for (int i = 0; i < 5; ++i) {
+        ASSERT_EQ(5 - i, list.at(i));
+    }
+}
+
+TEST_F(LinkedListTest, SlicingDefaultStep) {
+    for (int i = 1; i <= 6; ++i) {
+        list.push_back(i);  // [1, 2, 3, 4, 5, 6]
+    }
+
+    auto slice = list.slicing(1, 5, 1);  // Esperado: [2, 3, 4, 5]
+    ASSERT_EQ(4u, slice.size());
+    ASSERT_EQ(2, slice.at(0));
+    ASSERT_EQ(5, slice.at(3));
+}
+
+TEST_F(LinkedListTest, SlicingWithStep) {
+    for (int i = 1; i <= 10; ++i) {
+        list.push_back(i);  // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    }
+
+    auto slice = list.slicing(0, 10, 2);  // Esperado: [1, 3, 5, 7, 9]
+    ASSERT_EQ(5u, slice.size());
+    ASSERT_EQ(1, slice.at(0));
+    ASSERT_EQ(9, slice.at(4));
+}
+/*
+TEST_F(LinkedListTest, Halve) {
+    for (int i = 1; i <= 6; ++i) {
+        list.push_back(i);  // [1, 2, 3, 4, 5, 6]
+    }
+
+    auto second_half = list.halve();  // lista = [1, 2, 3]; second_half = [4, 5, 6]
+    ASSERT_EQ(3u, list.size());
+    ASSERT_EQ(3u, second_half.size());
+
+    ASSERT_EQ(1, list.at(0));
+    ASSERT_EQ(4, second_half.at(0));
+}
+
+
+TEST_F(LinkedListTest, Append) {
+    for (int i = 1; i <= 3; ++i) {
+        list.push_back(i);  // [1, 2, 3]
+    }
+
+    structures::LinkedList<int> extra;
+    for (int i = 4; i <= 6; ++i) {
+        extra.push_back(i);  // [4, 5, 6]
+    }
+
+    list.append(extra);  // Esperado: [1, 2, 3, 4, 5, 6]
+    ASSERT_EQ(6u, list.size());
+
+    for (int i = 0; i < 6; ++i) {
+        ASSERT_EQ(i + 1, list.at(i));
+    }
+
+    ASSERT_TRUE(extra.empty());  // A lista extra deve estar vazia após o append
+}
+*/

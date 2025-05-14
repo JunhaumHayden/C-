@@ -54,8 +54,15 @@ Então este repositório é para você! 🚀
 
 Este repositório é o meu laboratório de experimentos com C e C++. **Não espere projetos superpolidos**, mas sim um diário de código, com todos os acertos e tropeços registrados. Espero que, ao compartilhar minha jornada, eu possa ajudar outros aventureiros a desbravar o mundo de `printf`, `scanf` e referências mágicas que ninguém entende na primeira tentativa.  
 
----
 
+---
+## Links
+
+[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+[Linux manual pages: alphabetic list of all pages](https://man7.org/linux/man-pages/dir_all_alphabetic.html)
+
+
+---
 ## 🚀 Como rodar os códigos?  
 
 1️⃣ Clone este repositório:  

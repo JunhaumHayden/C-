@@ -1,5 +1,7 @@
 #include  <iostream>
 #include "alocacoes.h"
+
+
 int main(){
     std::string nomes1[] = {"Fulano", "Beltrano", "Ciclano"};
     int matriculas1[] = {1010, 2020, 3030};

@@ -1,4 +1,6 @@
 //! Copyright [year] <Copyright Owner>
+// linked_list.h
+
 #ifndef STRUCTURES_LINKED_LIST_H
 #define STRUCTURES_LINKED_LIST_H
 
@@ -43,7 +45,18 @@ namespace structures {
             //! ...
             std::size_t size() const;  // tamanho da lista
 
-         private:
+            void invert();
+
+            LinkedList clone();
+
+            LinkedList slicing(int start, int stop, int step);
+
+            void append(LinkedList<T>* list_add);
+
+            LinkedList< LinkedList<T>* > halve();
+;
+
+        private:
             class Node {  // Elemento (implementação pronta)
              public:
                 explicit Node(const T& data):
@@ -316,4 +329,93 @@ std::size_t structures::LinkedList<T>::find(const T& data) const {
 template<typename T>
 std::size_t structures::LinkedList<T>::size() const {
     return size_;
+}
+
+//! Metodo para inverter a lista
+template<typename T>
+void structures::LinkedList<T>::invert() {
+    if (size() < 2 ) return;
+    // tres ponteiros para manipulacao
+    Node* next = nullptr;
+    Node* current = head;
+    Node* previous = nullptr;
+    //iterar sobre a lista
+    while (current != nullptr) {
+        // atualizando ponteiros
+        next = current->next();
+        current->next(previous);
+        // atualizando elementos
+        previous = current;
+        current = next;
+    }
+    head = previous;
+}
+
+template<typename T>
+structures::LinkedList<T> structures::LinkedList<T>::clone() {
+    LinkedList<T> new_list;
+    Node* current = head;
+    while (current != nullptr) {
+        new_list.push_back(current->data());
+        current = current->next();
+    }
+    return new_list;
+}
+
+template<typename T>
+structures::LinkedList<T> structures::LinkedList<T>::slicing(int start, int stop, int step) {
+    LinkedList<T> result;
+    if (start < 0 || stop > size() || step <= 0) { // parametros fora da lista
+        return result;
+    }
+    Node* current = head;
+    int index = 0;
+
+    while (current != nullptr && index < stop) { // teste de fim de lista ou index atingir o stop
+        if (index >= start && (index - start) % step == 0) { // se index maior start E verificar se o index esta no intervalo correto.
+            result.push_back(current->data());
+        }
+        current = current->next();
+        ++index;
+    }
+    return result;
+}
+
+template<typename T>
+void structures::LinkedList<T>::append(LinkedList<T>* list_add) {
+    if (list_add == nullptr || list_add->empty()) {
+        return;
+    }
+
+    Node* current = list_add->head;
+
+    while (current != nullptr) {
+        this->push_back(current->data());
+        current = current->next();
+    }
+}
+
+template<typename T>
+structures::LinkedList<structures::LinkedList<T>*> structures::LinkedList<T>::halve() {
+    LinkedList<T>* pares = new LinkedList<T>();
+    LinkedList<T>* impares = new LinkedList<T>();
+
+    Node* current = head;
+    std::size_t index = 0;
+
+    while (current != nullptr) {
+        if (index % 2 == 0) {
+            pares->push_back(current->data());
+        } else {
+            impares->push_back(current->data());
+        }
+        current = current->next();
+        ++index;
+    }
+
+    LinkedList<LinkedList<T>*> resultado;
+    resultado.push_back(pares);
+    resultado.push_back(impares);
+
+    return resultado;
 }

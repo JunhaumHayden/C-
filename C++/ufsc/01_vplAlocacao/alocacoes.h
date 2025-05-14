@@ -1,4 +1,4 @@
-// Copyright [2022] <CCarlos Benedito Hayden de Albuquerque Junior>
+// Copyright [2022] <Carlos Benedito Hayden de Albuquerque Junior>
 #include <string>
 
 

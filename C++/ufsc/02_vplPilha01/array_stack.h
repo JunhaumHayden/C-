@@ -70,45 +70,37 @@ template<typename T>
 void structures::ArrayStack<T>::push(const T& data) {
     if (full()) {
         throw std::out_of_range("pilha cheia");
-    } else {
-        // COLOQUE SEU CODIGO AQUI...
-        top_++;
-        contents[top_] = data;
-        
     }
+    contents[++top_] = data; //Incrementa o valor primeiro, depois o utiliza na operação.
+    //top_++;
+    //contents[top_] = data;
 }
 
 template<typename T>
 T structures::ArrayStack<T>::pop() {
-    // COLOQUE SEU CODIGO AQUI...
     if (empty()) {
         throw std::out_of_range("pilha vazia");
-    } else {
-        return contents[top_--];
     }
-        
+    return contents[top_--]; // Usa o valor atual da variável, depois decrementa.
 }
 
+template<typename T>
 T& structures::ArrayStack<T>::top() {
-    // COLOQUE SEU CODIGO AQUI...
     return contents[top_];
 }
 
 template<typename T>
 void structures::ArrayStack<T>::clear() {
-    // COLOQUE SEU CODIGO AQUI...
     top_ = -1;
 }
 
 template<typename T>
 std::size_t structures::ArrayStack<T>::size() {
-    // COLOQUE SEU CODIGO AQUI...
     return static_cast<std::size_t>(top_+1);
 }
 
 template<typename T>
 std::size_t structures::ArrayStack<T>::max_size() {
-    // COLOQUE SEU CODIGO AQUI...
     return max_size_;
 }
 
@@ -119,8 +111,7 @@ bool structures::ArrayStack<T>::empty() {
 
 template<typename T>
 bool structures::ArrayStack<T>::full() {
-    // COLOQUE SEU CODIGO AQUI...
-    return static_cast<std::size_t>(top_ + 1) == max_size_;
+    return static_cast<std::size_t>(top_ + 1) == max_size_; // cast para evitar erro de comparação entre tipos diferentes - int -> std::size_t == std::size_t
     
 }
 
