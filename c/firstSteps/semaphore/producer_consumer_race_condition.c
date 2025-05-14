@@ -12,15 +12,15 @@ gcc -pthread -lrt seu_programa.c -o seu_programa
 #include <time.h> // biblioteca RT clock_gettime() Precisão de nanossegundos
 
 #define BUFFER_SIZE 5
-#define PRODUCE_ITENS 20 // Número de itens a serem produzidos
-#define CONSUME_ITENS 20 // Número de itens a serem consumidos
+#define PRODUCE_ITEMS 20 // Número de items a serem produzidos
+#define CONSUME_ITEMS 20 // Número de items a serem consumidos
 
 typedef struct
 {
-    int itens[BUFFER_SIZE]; // Buffer compartilhado
+    int items[BUFFER_SIZE]; // Buffer compartilhado
     int in;    // Próxima posição de inserção
     int out;   // Próxima posição de remoção
-    int count;  // Número de itens no buffer
+    int count;  // Número de items no buffer
 } Buffer;
 
 Buffer buffer = { .in = 0, .out = 0, .count = 0 }; // declarando uma struct global iniciada com 0
@@ -40,7 +40,7 @@ void consume_item(int id, int item)
 void* producer(void* arg)
 {
     int id = *((int*)arg);
-    for (int i = 0; i < PRODUCE_ITENS; i++)
+    for (int i = 0; i < PRODUCE_ITEMS; i++)
     {
         int item = produce_item(id, i);
 
@@ -50,9 +50,9 @@ void* producer(void* arg)
             usleep(1000);
         }
 
-        buffer.itens[buffer.in] = item; // Insere o item no buffer a cada iteracao
+        buffer.items[buffer.in] = item; // Insere o item no buffer a cada iteracao
         buffer.in = (buffer.in + 1) % BUFFER_SIZE; // Atualiza a posição de inserção
-        buffer.count++; // Incrementa o contador de itens - nao atomico
+        buffer.count++; // Incrementa o contador de items - nao atomico
         usleep(rand() % 1000); // Simula o tempo de produção
     }
     printf("Produtor %d: terminou de produzir\n\n", id);
@@ -62,14 +62,14 @@ void* producer(void* arg)
 void* consumer(void* arg)
 {
     int id = *((int*)arg);;
-    for (int i = 0; i < CONSUME_ITENS; i++)
+    for (int i = 0; i < CONSUME_ITEMS; i++)
     {
         while (buffer.count == 0) // se o buffer estiver vazio Espera Ativa (Busy Wait)
         {
             printf("Consumidor %d: Buffer vazio - in: %d, out: %d, count: %d\n", id, buffer.in, buffer.out, buffer.count);
             usleep(1000); // Espera se o buffer estiver vazio
         }
-        int item = buffer.itens[buffer.out];
+        int item = buffer.items[buffer.out];
         buffer.out = (buffer.out +1) % BUFFER_SIZE; // Atualiza a posição de remoção
         buffer.count--;
 
