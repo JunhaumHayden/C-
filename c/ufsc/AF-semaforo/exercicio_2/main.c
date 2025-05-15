@@ -24,7 +24,6 @@ char cabeceiras[2][11] = { { "CONTINENTE" }, { "ILHA" } };
 int total_veiculos;
 int veiculos_turno;
 
-// ToDo: Adicione aque quaisquer outras variávels globais necessárias.
 // variaveis de controle da ponte
 pthread_mutex_t mutex; // mutex para controle de acesso a ponte
 sem_t sem_continente, sem_ilha;
