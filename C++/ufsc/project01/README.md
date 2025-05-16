@@ -41,7 +41,7 @@ http://www.cplusplus.com/reference/string/string/
 
 Verificação de aninhamento e fechamento das marcações (tags) no arquivo XML (qualquer outra fonte de erro pode ser ignorada). 
 - Se houver um erro de aninhamento, deve se impresso `erro` na tela. 
-- Um identificador constitui uma marcação entre os caracteres `<` e `>`, podendo ser de abertura (por exemplo: `<cenario>`) ou de fechamento com uma / antes do identificador (por exemplo: `</cenario>`).
+- Um identificador constitui uma marcação entre os caracteres `<` e `>`, podendo ser de abertura (por exemplo: `<cenario>`) ou de fechamento com uma `/` antes do identificador (por exemplo: `</cenario>`).
 - O algoritmo para resolver este problema é baseado em pilha (LIFO):
 
 1. Ao encontrar uma marcação de abertura, empilha o identificador
