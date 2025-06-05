@@ -124,3 +124,47 @@ if (endptr == argv[1] || *endptr != '\0') {
 ```
 Mas `atoi()` é suficiente para este contexto onde já há verificação 
 posterior do valor (if (!n_threads...)).
+
+
+
+O erro estava na função mult_matrix, utilizar "#pragma omp parallel for" dentro de outro "parallel for" (paralelismo aninhado) estava causando problemas como uma condição de corrida no out[i*cols_right + j] += ... porque várias threads estavam acessando e modificar a mesma posição da matriz de saida simultaneamente. para corrigir isso tiramos um dos "parallel for" e utilizamos somente um, esse aqui: #pragma omp parallel for collapse(2), utilizamos esse pois assim conseguiriamos paralelizar os dois primeiros loops (i e j) de forma combinada. Além disso utilizamos uma variavel local chamda sum para receber a soma e evitar acesso simultâneo à mesma posição da matriz de saída.
+
+Olá estagiário,
+
+Identificou-se alguns problemas no seu código de multiplicação de matrizes que explicam os resultados incorretos e o desempenho abaixo do esperado:
+
+1. Race Condition (Condição de Corrida)
+
+O principal erro está na paralelização do loop mais interno da multiplicação:
+
+Problema: Várias threads estão tentando atualizar out[i*cols_right+j] ao mesmo tempo, causando uma condição de corrida. Quando múltiplas threads acessam e modificam a mesma variável simultaneamente sem sincronização, o resultado final fica incorreto.
+
+Solução: Movemos a paralelização apenas para o loop externo e usamos uma variável local sum para acumular os resultados antes de escrever na matriz de saída.
+
+2. Paralelização Excessiva
+
+Você usou três níveis de paralelização:
+
+No loop externo (i)
+No loop do meio (j)
+No loop interno (k)
+Problema: Isso cria um overhead enorme de gerenciamento de threads sem benefício real, pois:
+
+- Cada thread adicional tem custo de criação
+- O trabalho por thread fica muito pequeno
+- O sistema gasta mais tempo gerenciando threads do que computando
+Solução: Paralelizamos apenas o loop mais externo (i), que fornece trabalho suficiente para cada thread e minimiza o overhead.
+
+3. Agendamento Ineficiente
+
+Você usou:
+
+- schedule(guided) na inicialização
+- schedule(dynamic,1) na multiplicação
+Problema: Esses esquemas de agendamento introduzem overhead desnecessário para matrizes, onde o trabalho é uniformemente distribuído.
+
+Solução: Usamos schedule(static), que:
+
+- Divide o trabalho igualmente entre as threads no início
+- Tem quase zero overhead durante a execução
+- É ideal para cargas de trabalho regulares como matrizes
