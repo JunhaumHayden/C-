@@ -1,7 +1,5 @@
 // Copyright [2025] <Autor>
 
-#include <iostream>
-
 #include "array_list.h"
 
 namespace structures {
@@ -43,8 +41,6 @@ private:
             right = nullptr;
         }
 
-        //destrutor recursivo
-        //Como delete nullptr é seguro em C++, você não precisa testar se left ou right são nullptr.
         ~Node() {
             delete left;
             delete right;
@@ -60,28 +56,27 @@ private:
 
         bool remove(const T& data_) {
             // COLOQUE SEU CÓDIGO AQUI... SE IMPLEMENTAÇÃO RECURSIVA
+            return false;
         }
 
         bool contains(const T& data_) const {
-            if (data_ == this->data) {
+            if (data_ == data) {
                 return true;
-            } else if (data_ < this->data) {
-                if (this->left != nullptr) {
-                    return this->left->contains(data_);
-                } else {
-                    return false;
-                }
-            } else {  // data_ > data
-                if (right != nullptr) {
-                    return right->contains(data_);
-                } else {
-                    return false;
-                }
             }
+            if (data_ < data) {
+                if (left != nullptr) {
+                    return left->contains(data_);
+                }
+                return false;
+            }
+            // data_ > data
+            if (right != nullptr) {
+                return right->contains(data_);
+            }
+            return false;
         }
 
         void pre_order(ArrayList<T>& v) const {
-            // VLR
             v.push_back(this->data);
             if (left != nullptr) {
                 left->pre_order(v);
@@ -92,7 +87,6 @@ private:
         }
 
         void in_order(ArrayList<T>& v) const {
-            //LVR
             if (left != nullptr) {
                 left->in_order(v);
             }
@@ -103,11 +97,9 @@ private:
         }
 
         void post_order(ArrayList<T>& v) const {
-            //LRV
             if (left != nullptr) {
                 left->post_order(v);
             }
-
             if (right != nullptr) {
                 right->post_order(v);
             }
@@ -131,16 +123,15 @@ structures::BinaryTree<T>::BinaryTree() {
 
 template<typename T>
 structures::BinaryTree<T>::~BinaryTree() {
-    clear(); // Agora ele só chama o clear que deleta root
+    clear();
 }
 
 template<typename T>
 void structures::BinaryTree<T>::clear() {
-    delete root;      // Isso já chama o destrutor de todos os nós recursivamente
+    delete root;
     root = nullptr;
     size_ = 0;
 }
-
 
 template<typename T>
 void structures::BinaryTree<T>::insert(const T& data) {
@@ -165,7 +156,6 @@ void structures::BinaryTree<T>::insert(const T& data) {
     } else {
         prev->right = new Node(data);
     }
-
     size_++;
 }
 
@@ -173,7 +163,6 @@ template<typename T>
 void structures::BinaryTree<T>::remove(const T& data) {
     Node* parent = nullptr;
     Node* current = root;
-
     while (current != nullptr && current->data != data) {
         parent = current;
         if (data < current->data) {
@@ -182,14 +171,11 @@ void structures::BinaryTree<T>::remove(const T& data) {
             current = current->right;
         }
     }
-
     if (current == nullptr) {
         throw std::out_of_range("Data not found");
     }
-
     if (current->left == nullptr || current->right == nullptr) {
         Node* newChild = (current->left != nullptr) ? current->left : current->right;
-
         if (parent == nullptr) {
             root = newChild;
         } else if (parent->left == current) {
@@ -200,27 +186,22 @@ void structures::BinaryTree<T>::remove(const T& data) {
     } else {
         Node* maxLeft = current->left;
         Node* parentMaxLeft = current;
-
         while (maxLeft->right != nullptr) {
             parentMaxLeft = maxLeft;
             maxLeft = maxLeft->right;
         }
-
         current->data = maxLeft->data;
-
         if (parentMaxLeft->right == maxLeft) {
             parentMaxLeft->right = maxLeft->left;
         } else {
             parentMaxLeft->left = maxLeft->left;
         }
-
         current = maxLeft;
     }
-
-    // evita double delete (pois destrutor de Node libera filhos)
     current->left = nullptr;
     current->right = nullptr;
     delete current;
+
     size_--;
 }
 
@@ -228,9 +209,8 @@ template<typename T>
 bool structures::BinaryTree<T>::contains(const T& data) const {
     if (root != nullptr) {
         return root->contains(data);
-    } else {
-        return false;
     }
+    return false;
 }
 
 template<typename T>
@@ -245,7 +225,7 @@ std::size_t structures::BinaryTree<T>::size() const {
 
 template<typename T>
 structures::ArrayList<T> structures::BinaryTree<T>::pre_order() const {
-    structures::ArrayList<T> L;
+    ArrayList<T> L;
 	if (root != nullptr) {
 		root->pre_order(L);
 	}
@@ -254,7 +234,7 @@ structures::ArrayList<T> structures::BinaryTree<T>::pre_order() const {
 
 template<typename T>
 structures::ArrayList<T> structures::BinaryTree<T>::in_order() const {
-    structures::ArrayList<T> L;
+    ArrayList<T> L;
     if (root != nullptr) {
         root->in_order(L);
     }
@@ -263,11 +243,9 @@ structures::ArrayList<T> structures::BinaryTree<T>::in_order() const {
 
 template<typename T>
 structures::ArrayList<T> structures::BinaryTree<T>::post_order() const {
-    structures::ArrayList<T> L;
+    ArrayList<T> L;
     if (root != nullptr) {
         root->post_order(L);
     }
     return L;
 }
-
-
