@@ -30,7 +30,7 @@ void imprime_vet(unsigned int *v, int tam) {
     printf("\n");
 }
 
-// Funcao para ler os dados de um arquivo e armazenar em um vetor em memoroa. Não pode alterar.
+// Funcao para ler os dados de um arquivo e armazenar em um vetor em memoria. Não pode alterar.
 int le_vet(char *nome_arquivo, unsigned int *v, int tam) {
     FILE *arquivo;
     
