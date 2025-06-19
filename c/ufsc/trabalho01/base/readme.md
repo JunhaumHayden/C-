@@ -47,6 +47,21 @@ ___
 - Sistema compatível com POSIX (Linux, macOS)
 - IDE de desenvolvimento C (opcional)
 
+### Makefile
+Como usar:
+
+No terminal, na mesma pasta onde está sort.c, digite:
+
+``` bash
+    make
+``` 
+
+Isso irá gerar o executável `./program`.
+
+Para remover o binário gerado:
+``` bash
+    make clean
+```
 ### Compilação
 
 ```sh
@@ -55,7 +70,7 @@ gcc -o parallel_sort main.c -lpthread
 ### Execução
 
 ```sh
-./parallel_sort <input_file> <nnumbers> <ntasks> <nthreads>
+./program <input_file> <nnumbers> <ntasks> <nthreads>
 ```
 - `input_file`: Arquivo contendo inteiros sem sinal separados por espaço
 - `nnumbers`: Quantidade de inteiros no arquivo
@@ -64,26 +79,26 @@ gcc -o parallel_sort main.c -lpthread
 
 #### Exemplo
 ```sh
-./parallel_sort input.txt 100 20 4
+./program input.txt 100 20 4
 ```
 ### Estrutura do Projeto
 ```plaintext
-.
-├── main.c           # Lógica principal do programa
-├── bubble_sort.c    # Implementação do bubble sort
-├── bubble_sort.h    # Header do bubble sort
-├── utils.c          # Funções utilitárias (leitura de arquivo, etc.)
-├── utils.h
-├── input.txt        # Exemplo de arquivo de entrada
+./base
+├── sort.c           # Lógica principal do programa
+├── Makefile         # Makefile para compilação do programa
+├── gera_dados.c     # Programa para geração de datasets de entrada
+├── run_tests.sh     # Script para execução de testes e medição de desempenho
+├── dados.txt        # Arquivo de entrada fornecido
+├── dataset10000.txt # Exemplo de arquivo de entrada gerado
 └── readme.md        # Documentação do projeto
 ```
 ___
 
 ## 1 Definição
-Deve-se desenvolver uma solução paralela em C para o problema da ordenação de números inteiros sem sinal (**unsigned int**). 
+Desenvolvimento uma solução paralela em C para o problema da ordenação de números inteiros sem sinal (**unsigned int**). 
 
 > A solução deverá ser implementada com uso de POSIX threads (não é permitido o uso de OpenMP).
-
+### Comportamento Esperado
 #### O programa deverá funcionar da seguinte forma:
 - O programa deverá receber 4 parâmetros de entrada via linha de comando na seguinte ordem:
   - `input`: um arquivo contendo números inteiros sem sinal desordenados e separados por espaço;
@@ -200,14 +215,110 @@ Os parâmetros `v` e `tam` correspondem ao vetor a ser ordenado e o seu tamanho,
    
 ```
 ---
+## Utilitários do Projeto
 
+### Medição de Speedup
+
+#### Execução dos Testes
+
+Para medir o desempenho da implementação sequencial em comparação com a versão paralela, utilizamos o script `run_tests.sh`, que executa o programa com:
+
+- **1 tarefa e 1 thread** (modo sequencial)
+- **Várias tarefas e threads** (modo paralelo)
+
+```bash
+/bin/bash ./run_tests.sh
+```
+
+#### Exemplo de saída:
+```plaintext
+Tempo sequencial: 0.005048
+Tempo paralelo:   0.000884
+Speedup:          5.71040723981900452488
+```
+Speedup é uma métrica que quantifica o ganho de desempenho obtido com paralelização.
+```plaintext
+  Speedup = Tempo_sequencial / Tempo_paralelo
+``` 
+Onde:
+
+- `Tempo_sequencial`: tempo de execução com 1 tarefa e 1 thread
+
+- `Tempo_paralelo`: tempo de execução com múltiplas tarefas e threads
+
+#### Interpretação
+No exemplo acima, o speedup foi aproximadamente:
+```plaintext
+Speedup ≈ 0.005048 / 0.000884 ≈ 5.71
+```
+> Isso significa que a versão paralela foi **5,7 vezes** mais rápida que a versão sequencial, o que indica uma paralelização eficiente do algoritmo.
+
+---
+### Geração de Dataset de Entrada
+
+Para gerar arquivos de entrada de qualquer tamanho, que podem ser utilizados para testar a ordenação paralela, 
+utilizamos o programa `gera_dataset.c`, que cria um arquivo contendo números inteiros aleatórios e recebe como argumento a quantidade de números que serão gerados.
+
+#### Compilando o gerador
+
+Compile o programa `gera_dataset.c` com o gcc:
+```bash
+  gcc gera_dataset.c -o gera_dataset
+```
+Isso criará um executável chamado gera_dataset.
+#### Utilização
+
+Execute o programa passando como argumento a quantidade de números que deseja gerar. Por exemplo, para gerar um arquivo com `10.000` números:
+```bash
+  ./gera_dataset 10000
+```
+#### Saída
+
+O programa irá gerar um arquivo chamado:
+
+`dataset10000.txt`
+
+Esse arquivo conterá 10.000 números aleatórios, separados por espaços em uma única linha, prontos para serem utilizados como entrada no programa principal de ordenação.
+💡 Exemplo de conteúdo do arquivo gerado
+
+```plaintext
+459 8823 132 491 29 4 9999 102 9432 ...
+```
+
+___
 ## Conclusão
 
-Este projeto demonstra a ordenação paralela utilizando pthreads, com distribuição cuidadosa de tarefas e uso eficiente dos recursos do sistema. Serve como exemplo prático dos conceitos de programação concorrente em C.
+
+Este projeto demonstra com eficácia a aplicação de técnicas de programação concorrente em C, utilizando a biblioteca `POSIX Threads (pthreads)` 
+para realizar a ordenação paralela de números inteiros sem sinal. 
+A arquitetura do sistema foi projetada para explorar o paralelismo por tarefas, em que os dados são distribuídos dinamicamente entre 
+múltiplas threads, garantindo balanceamento de carga e escalabilidade.
+
+Entre os principais destaques técnicos:
+
+- Distribuição de tarefas baseada em intervalos de valor para melhor particionamento dos dados;
+
+- Execução paralela controlada por mutex, permitindo que múltiplas threads realizem ordenações independentes de forma segura;
+
+- Medição precisa de desempenho com `gettimeofday`, permitindo análise quantitativa de desempenho e cálculo de speedup;
+
+-  Análise de speedup que evidencia o ganho de desempenho proporcionado pelo uso de múltiplas threads em comparação com a execução sequencial;
+
+-  Inclusão de scripts auxiliares para execução automatizada de testes e geração de datasets personalizados, facilitando a reprodutibilidade e 
+experimentação.
+
+Este projeto serve como um exemplo prático dos principais conceitos da disciplina INE5410 - Programação Concorrente (UFSC), 
+sendo útil para o estudo de sincronização, divisão de tarefas e análise de desempenho em sistemas concorrentes. 
+Além disso, a estrutura modular e a documentação tornam o projeto extensível para investigações futuras com algoritmos de ordenação mais 
+sofisticados ou diferentes modelos de paralelismo.
 ___
 
-
 ## 📚 Referências
+
+- **Material didático da disciplina INE5410 - Programação Concorrente (UFSC)**, incluindo slides e exemplos fornecidos em aula.
+- HARTLEY, Stephen J. *Concurrent Programming: The Java Programming Language*. Oxford University Press, 1998. ISBN: 978-0-19-511315-0.
+- TANENBAUM, Andrew S. *Sistemas Operacionais Modernos*. 3. ed. Rio de Janeiro: Pearson Prentice Hall, 2010. xiii, 653 p. ISBN: 9788576052371.
+
 ___
 ## 📄 Licença
 

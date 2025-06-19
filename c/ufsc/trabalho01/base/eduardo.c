@@ -101,8 +101,8 @@ void* worker_thread(void *args) {
         }
 
         // Imprime o log de processamento exigido
-        printf("Thread %d processando tarefa %d\n", thread_args->thread_id, task_id);
-        fflush(stdout); // Garante que o log seja impresso imediatamente
+        //printf("Thread %d processando tarefa %d\n", thread_args->thread_id, task_id);
+        //fflush(stdout); // Garante que o log seja impresso imediatamente
 
         // Ordena os elementos da tarefa usando a função fornecida
         // É necessário fazer um cast para (int*) pois bubble_sort espera um ponteiro para int
