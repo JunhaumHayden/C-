@@ -1,6 +1,12 @@
+<div align="center">
+
+<h1>INE5410 - Programação Concorrente</h1>
+<img src='assets/concurrency.jpg' alt="Logo Programação Concorrente" width="220">
+
+</div>
+
 # Trabalho – Ordenação de Números Inteiros em Paralelo
 ___
-### INE5410 - Programação Concorrente
 2025/1
 ### 
 
@@ -21,7 +27,7 @@ ___
 
 ## Introdução
 
-Este projeto implementa uma solução paralela em C para ordenação de números inteiros sem sinal utilizando POSIX threads (pthreads). Desenvolvido para a disciplina INE5410 - Programação Concorrente (2025/1), o projeto demonstra paralelização eficiente e distribuição de tarefas para ordenação de grandes volumes de dados.
+Este projeto implementa uma solução paralela escrita em C para ordenação de números inteiros sem sinal utilizando POSIX threads (pthreads). Desenvolvido para a disciplina INE5410 - Programação Concorrente (2025/1), o projeto demonstra paralelização eficiente e distribuição de tarefas para ordenação de grandes volumes de dados.
 ___
 
 ## Funcionalidades
@@ -39,7 +45,7 @@ ___
 
 - GCC ou compilador C compatível
 - Sistema compatível com POSIX (Linux, macOS)
-- CLion ou qualquer IDE C (opcional)
+- IDE de desenvolvimento C (opcional)
 
 ### Compilação
 
@@ -82,7 +88,7 @@ Deve-se desenvolver uma solução paralela em C para o problema da ordenação d
 - O programa deverá receber 4 parâmetros de entrada via linha de comando na seguinte ordem:
   - `input`: um arquivo contendo números inteiros sem sinal desordenados e separados por espaço;
   - `nnumbers`: a quantidade de números armazenados no arquivo de entrada;
-  - `ntasks`: o número de tarefas a serem executadas; e
+  - `ntasks`: o número de tarefas a serem executadas;
   - `nthreads`: o número de threads que executarão as tarefas em paralelo.
 - O vetor de entrada sempre conterá valores entre `0` e `nnumbers-1`. 
 > Por exemplo, um vetor de entrada de tamanho 10 (`nnumbers=10`) poderá conter somente números dentro da faixa [0, 10) enquanto um vetor de entrada de tamanho 30 (`nnumbers=30`) poderá conter somente números dentro da faixa [0, 30);
@@ -132,7 +138,9 @@ Nesse caso, 4 tarefas teriam intervalos de 3 elementos e 4 tarefas teriam interv
 
 
    
-No exemplo da Figura 1 considerou-se `nnumbers`=10. Logo, o vetor de entrada contém obrigatoriamente números entre *[0, 10)*. Estes números foram divididos em 5 tarefas (Etapa 1), cada um armazenando números em uma faixa contendo 2 valores possíveis: [0, 2), [2, 4), ..., [8, 10). Note que uma das tarefas ficou vazia, pois não havia nenhum número pertencente ao intervalo [6, 8). Logo, essa tarefa poderá ser simplesmente descartada na Etapa 2. Os números em cada tarefa foram ordenados em paralelo (Etapa 2). Por fim, na Etapa 3, os números ordenados em cada tarefa foram concatenados, gerando o resultado final.
+No exemplo da Figura 1 considerou-se `nnumbers`= 10. Logo, o vetor de entrada contém obrigatoriamente números entre *[0, 10)*. Estes números foram divididos em 5 tarefas (Etapa 1), cada um armazenando números em uma faixa contendo 2 valores possíveis: **[0, 2), [2, 4), ..., [8, 10)**. 
+
+Note que uma das tarefas ficou vazia, pois não havia nenhum número pertencente ao intervalo [6, 8). Logo, essa tarefa poderá ser simplesmente descartada na Etapa 2. Os números em cada tarefa foram ordenados em paralelo (Etapa 2). Por fim, na Etapa 3, os números ordenados em cada tarefa foram concatenados, gerando o resultado final.
 O programa deverá funcionar em todos os casos, independentemente do tamanho do vetor, número de tarefas ou threads, exceto nos seguintes casos: quando o número de threads for menor que 1 ou quando o número de tarefas for maior que o tamanho do vetor.
 ___
 ### Saída
@@ -208,7 +216,7 @@ ___
 
 # Autores
 
-| [<img src="https://avatars.githubusercontent.com/u/79289647?v=4" width=115><br><sub>Lucas de Oliveira</sub>](https://github.com/JunhaumHayden) | [<img src="https://avatars.githubusercontent.com/u/79289647?v=4" width=115><br><sub>Eduardo Favacho</sub>](https://github.com/JunhaumHayden) | [<img src="https://avatars.githubusercontent.com/u/79289647?v=4" width=115><br><sub>Carlos Hayden</sub>](https://github.com/JunhaumHayden) |
+| [<sub>Lucas de Oliveira</sub>](https://github.com/JunhaumHayden) | [<sub>Eduardo Favacho</sub>](https://github.com/JunhaumHayden) | [<sub>Carlos Hayden</sub>](https://github.com/JunhaumHayden) |
 | :---: | :---: | :---: |
 
 Disciplina: INE5410 - Programação Concorrente (2025/1)
