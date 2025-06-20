@@ -45,6 +45,7 @@ int le_vet(char *nome_arquivo, unsigned int *v, int tam) {
     // Lê os números
     for (int i = 0; i < tam; i++)
         fscanf(arquivo, "%u", &v[i]);
+
     fclose(arquivo);
 
     return 1;
@@ -94,8 +95,8 @@ void *executa_tarefa(void *arg) {
             continue;
         }
         // Imprime o log de processamento exigido
-        printf("Thread %d processando tarefa %d\n", t->thread_id, t->id);
-        fflush(stdout); // Garante que o log seja impresso imediatamente
+        //printf("Thread %d processando tarefa %d\n", t->thread_id, t->id);
+        //fflush(stdout); // Garante que o log seja impresso imediatamente
 
         // Ordena os elementos da tarefa usando a função fornecida
         bubble_sort((int *) t->valores, t->qtd);
@@ -117,7 +118,7 @@ int sort_paralelo(unsigned int *vetor, unsigned int tam, unsigned int ntasks, un
 
     // Aloca tarefas
     Tarefa *tarefas = calloc(ntasks, sizeof(Tarefa));
-    for (unsigned int i = 0; i < ntasks; i++) {
+    for (int i = 0; i < ntasks; i++) {
         tarefas[i].id = i;
         tarefas[i].thread_id = i % nthreads; // Distribui as tarefas entre as threads
         tarefas[i].min_val = min + i * intervalo;
@@ -128,7 +129,7 @@ int sort_paralelo(unsigned int *vetor, unsigned int tam, unsigned int ntasks, un
 
     // Distribui os valores nas tarefas
     for (unsigned int i = 0; i < tam; i++) {
-        for (unsigned int j = 0; j < ntasks; j++) {
+        for (int j = 0; j < ntasks; j++) {
             if (vetor[i] >= tarefas[j].min_val && vetor[i] <= tarefas[j].max_val) {
                 tarefas[j].valores[tarefas[j].qtd++] = vetor[i];
                 break;
@@ -150,7 +151,7 @@ int sort_paralelo(unsigned int *vetor, unsigned int tam, unsigned int ntasks, un
     // --- ETAPA 3: CONCATENAÇÃO DOS RESULTADOS ---
     // Concatena os resultados
     int idx = 0;
-    for (unsigned int i = 0; i < ntasks; i++) {
+    for (int i = 0; i < ntasks; i++) {
         for (int j = 0; j < tarefas[i].qtd; j++) {
             vetor[idx++] = tarefas[i].valores[j];
         }
