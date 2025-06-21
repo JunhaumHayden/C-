@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{float}
+
+
+\geometry{a4paper, total={6in, 8in}}
+
+\title{Projeto II - INE5408\\Indexação de Palavras com Estrutura de Trie}
+\author{Nome do Aluno: Hayden Junior}
+\date{Junho de 2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introdução}
+
+Este projeto tem como objetivo a construção de uma estrutura de dados do tipo \textit{Trie} para armazenar e indexar palavras extraídas de arquivos com extensão \texttt{.dic}, que seguem o padrão do OpenOffice. A estrutura visa identificar prefixos em comum entre palavras e possibilitar a consulta eficiente desses prefixos. O projeto é desenvolvido como parte da disciplina de Estrutura de Dados e Algoritmos (INE5408), ministrada na Universidade Federal de Santa Catarina (UFSC).
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Desenvolver uma estrutura de dados eficiente para armazenar palavras com base em seus prefixos.
+    \item Implementar operações de inserção e busca na \textit{Trie}.
+    \item Indexar as palavras de um dicionário padrão OpenOffice.
+    \item Permitir a consulta de palavras com base em seus prefixos.
+    \item Analisar o desempenho da estrutura.
+\end{itemize}
+
+\section{Fundamentação Teórica}
+
+\subsection{Estrutura de Dados Trie}
+
+Uma \textit{Trie}, também conhecida como árvore de prefixos, é uma estrutura de dados especializada no armazenamento de strings, onde cada nó representa um caractere da palavra. Essa estrutura permite buscas, inserções e deleções em tempo proporcional ao tamanho da palavra, independentemente do número total de palavras armazenadas.
+
+\subsection{Vantagens}
+
+\begin{itemize}
+    \item Eficiência em buscas por prefixo.
+    \item Utilização em algoritmos de sugestão/autocompletar.
+    \item Estruturação hierárquica das palavras.
+\end{itemize}
+
+\subsection{Arquivos .dic}
+
+Arquivos com extensão \texttt{.dic} são utilizados por processadores de texto, como o OpenOffice, para armazenar listas de palavras em um determinado idioma. Cada linha do arquivo contém uma palavra, podendo incluir marcações adicionais, como regras de flexão.
+
+\section{Metodologia}
+
+\subsection{Leitura do Arquivo}
+
+O programa abre o arquivo \texttt{.dic} e lê cada linha, extraindo a palavra antes de qualquer marcador (como barras ou símbolos especiais). A linha é processada e, em seguida, a palavra é inserida na \textit{Trie}.
+
+\subsection{Implementação da Trie}
+
+A estrutura \texttt{TrieNode} é composta por um vetor de ponteiros para os filhos (um para cada letra do alfabeto) e um marcador booleano indicando se aquele nó representa o fim de uma palavra válida.
+
+\begin{lstlisting}[language=C, caption=Definição da estrutura TrieNode]
+typedef struct TrieNode {
+    struct TrieNode* filhos[26];
+    bool eh_fim_de_palavra;
+} TrieNode;
+\end{lstlisting}
+
+\subsection{Inserção na Trie}
+
+Para cada palavra, percorremos os caracteres e alocamos nós filhos caso ainda não existam. Ao final da palavra, o nó correspondente ao último caractere recebe a marcação de fim de palavra.
+
+\subsection{Busca por Prefixo}
+
+A busca por prefixo percorre a \textit{Trie} até onde os caracteres do prefixo coincidirem. A partir desse ponto, todas as palavras derivadas daquele nó são listadas.
+
+\section{Desenvolvimento}
+
+\subsection{Arquitetura do Programa}
+
+O programa é dividido em módulos para facilitar a organização:
+
+\begin{itemize}
+    \item \texttt{trie.c} e \texttt{trie.h}: implementam a estrutura de dados.
+    \item \texttt{main.c}: responsável pela leitura dos arquivos e interação com o usuário.
+\end{itemize}
+
+\subsection{Desafios Encontrados}
+
+\begin{itemize}
+    \item ****Tratamento de palavras com acentuação: foi necessário filtrar ou adaptar a entrada.
+    \item ****Gerenciamento de memória: a alocação dinâmica de nós exige cuidados para evitar vazamentos.
+    \item ****Desempenho: otimizações foram necessárias para melhorar a velocidade de inserção e consulta.
+\end{itemize}
+
+\section{Resultados}
+
+\subsection{Testes Realizados}
+
+Foram utilizados os dois dicionários fornecidos para testar o desempenho e a correção do programa, além dos teste no VPL. Os testes incluíram:
+
+\begin{itemize}
+    \item Inserção de todas as palavras do dicionário.
+    \item Consulta de prefixos curtos (ex: ``pre'') e longos (ex: ``proprie'').
+\end{itemize}
+
+\subsection{Análise}
+
+A \textit{Trie} demonstrou excelente desempenho em buscas por prefixo, com tempos praticamente constantes para palavras já existentes. A estrutura também se mostrou eficiente no uso de memória para dicionários de médio porte.
+
+\section{Análise de Complexidade e Comparação com Algoritmos Tradicionais}
+
+A estrutura de dados \textit{trie} foi escolhida neste projeto por sua eficiência na indexação e busca de prefixos em grandes volumes de palavras, como em arquivos de dicionários. A seguir, é apresentada uma análise da complexidade dos algoritmos utilizados, bem como uma comparação com o algoritmo de busca linear tradicional.
+
+\subsection{Busca Tradicional (Linear)}
+
+O algoritmo de busca tradicional, aplicado em listas ou vetores não ordenados, possui complexidade de tempo $\mathcal{O}(n)$, onde $n$ representa o número total de palavras. Em cada busca, é necessário comparar a string de entrada com cada elemento da estrutura até que haja uma correspondência ou se esgotem os elementos.
+
+Esse tipo de abordagem apresenta limitações de desempenho, especialmente em dicionários grandes, onde a busca por prefixos se torna ineficiente.
+
+\subsection{Busca com Trie}
+
+A \textit{trie} é uma árvore de prefixos na qual cada nó representa um caractere e caminhos formam palavras completas. A complexidade da operação de busca na trie é $\mathcal{O}(m)$, onde $m$ é o comprimento da palavra (ou prefixo) buscado, independentemente da quantidade de palavras armazenadas.
+
+Como cada caractere leva a um próximo nó da árvore, o tempo de busca depende apenas da quantidade de letras do prefixo e não da quantidade total de palavras na trie. Esta característica torna a \textit{trie} ideal para buscas por prefixos, operações de autocompletar e verificação de existência de palavras.
+
+\subsection{Comparação}
+
+\begin{table}[H]
+\centering
+\caption{Comparação entre os algoritmos de busca}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Algoritmo} & \textbf{Complexidade da Busca} & \textbf{Dependência do Tamanho do Dicionário} \\
+\hline
+Busca Linear       & $\mathcal{O}(n)$              & Sim \\
+\hline
+Busca com Trie     & $\mathcal{O}(m)$              & Não \\
+\hline
+\end{tabular}
+\end{table}
+
+Observa-se que, enquanto a busca linear se torna cada vez mais custosa conforme o número de palavras cresce, a busca na \textit{trie} mantém seu desempenho estável mesmo com grandes volumes de dados. Essa vantagem é especialmente importante em aplicações que exigem respostas rápidas, como corretores ortográficos, sistemas de sugestão e mecanismos de busca com autocompletar.
+
+\section{Conclusão}
+
+O uso da \textit{Trie} se mostrou uma solução eficaz para o problema de indexação de palavras por prefixo. A estrutura é simples de implementar e oferece ótimo desempenho, sendo adequada para aplicações como corretores ortográficos e sistemas de sugestão automática.
+
+\section{Referências}
+
+\begin{itemize}
+    \item CORMEN, Thomas H.; LEISERSON, Charles E.; RIVEST, Ronald L.; STEIN, Clifford. \textit{Algoritmos: Teoria e Prática}. 3. ed. Rio de Janeiro: Elsevier, 2012.
+    \item SEDGEWICK, Robert; WAYNE, Kevin. \textit{Algorithms}. 4th Edition. Addison-Wesley, 2011.
+    \item OpenOffice Dictionary Format. Disponível em: \url{https://wiki.openoffice.org/wiki/Dictionaries}. Acesso em: junho de 2025.
+    \item **Material didático da disciplina INE5408 - Estrutura de Dados e Algoritmos (UFSC)**, incluindo slides e exemplos fornecidos em aula. 
+\end{itemize}
+
+\end{document}
