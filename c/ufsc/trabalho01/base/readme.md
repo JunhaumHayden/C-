@@ -318,6 +318,8 @@ ___
 - **Material didático da disciplina INE5410 - Programação Concorrente (UFSC)**, incluindo slides e exemplos fornecidos em aula.
 - HARTLEY, Stephen J. *Concurrent Programming: The Java Programming Language*. Oxford University Press, 1998. ISBN: 978-0-19-511315-0.
 - TANENBAUM, Andrew S. *Sistemas Operacionais Modernos*. 3. ed. Rio de Janeiro: Pearson Prentice Hall, 2010. xiii, 653 p. ISBN: 9788576052371.
+- GNU Bash Reference Manual. Free Software Foundation. Disponível em: https://www.gnu.org/software/bash/manual/
+- The Shell Scripting Tutorial. Disponível em: https://www.shellscript.sh/
 
 ___
 ## 📄 Licença
